@@ -1,0 +1,9 @@
+while read LINE
+        do
+         if [[ $LINE =~ "^##.*" ]]
+          then
+          echo "<div>$LINE</div>" | sed 's/^<div>##/<div>/'
+          else
+          echo "<pre>$LINE</pre>"
+         fi
+        done |  sed 'N;/\n<div>/s/<\/div>\n<div>/\n/;P;D' |  sed 'N;/\n<pre>/s/<\/pre>\n<pre>/\n/;P;D'
